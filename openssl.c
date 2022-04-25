@@ -1,3 +1,6 @@
+#include <openssl/err.h>
+#include <openssl/pem.h>
+#include <openssl/rsa.h>
 #include "openssl.h"
 
 #define RSA_BITS 1024
@@ -9,7 +12,7 @@ void printLastError(char *msg)
     char *err = malloc(130);
     ERR_load_crypto_strings();
     ERR_error_string(ERR_get_error(), err);
-    printf("\n%s ERROR : %s", msg, err);
+    printf("\n%s ERROR: %s", msg, err);
     free(err);
 }
 

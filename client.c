@@ -1,9 +1,3 @@
-/*
-SE408:INS Final Project
-Group Number - 11
-Full code repository: https://github.com/axnmol/AES-RSA-client-server
-*/
-
 #include "openssl.h"
 
 int main()
@@ -30,7 +24,7 @@ int main()
         perror("\nConnection failed. Error");
         return 1;
     }
-    printf("\nConnected to remote server\n");
+    printf("\nConnected to remote server");
 
     // Receiving server's public key
     printf("\nReceiving server's public key ...");
@@ -40,8 +34,8 @@ int main()
         printf("\nReceiving public key failed");
         return 1;
     }
-    printf("\nReceived server's public key\n");
-    printf("\nServer's public key is : \n%s", serverReply);
+    printf("\nReceived server's public key");
+    printf("\nServer's public key is : %s\n", serverReply);
     fflush(stdout);
 
     // Generating an AES_KEY for symmetric encryption
@@ -72,19 +66,18 @@ int main()
     while (1)
     {
         memset(message, 0, sizeof(message));
-        printf("\n-----------------------------------------------");
         printf("\nEnter message : ");
         fflush(stdin);
 
         if (scanf("%s", message) == 0)
         {
-            printf("\nFailed to read the message");
+            printf("\nFailed to read the message\n");
             return 1;
         }
 
         unsigned char encryptedMessage[BUFFER_LENGTH];
         AES_encrypt(message, encryptedMessage, &encryptionKey);
-        printf("Encrypted message is : %s", encryptedMessage);
+        printf("\nEncrypted message is : %s", encryptedMessage);
         fflush(stdout);
 
         // Sending data

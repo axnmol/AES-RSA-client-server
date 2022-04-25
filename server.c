@@ -1,9 +1,3 @@
-/*
-SE408:INS Final Project
-Group Number - 11
-Full code repository: https://github.com/axnmol/AES-RSA-client-server
-*/
-
 #include "openssl.h"
 
 int main()
@@ -30,7 +24,7 @@ int main()
         perror("\nBinding failed. Error");
         return 1;
     }
-    printf("\nBinding done\n");
+    printf("\nBinding done");
 
     // Listening
     listen(serverSocket, 3);
@@ -40,7 +34,7 @@ int main()
     memset(rsaPrivateKey, 0, RSA_LENGTH);
     memset(rsaPublicKey, 0, RSA_LENGTH);
     createRsaPair(rsaPrivateKey, rsaPublicKey);
-    printf("\nServer's public key is : \n%s", rsaPublicKey);
+    printf("\nPublic key is \n%s\n", rsaPublicKey);
 
     // Accepting incoming connection
     while (1)
@@ -100,8 +94,7 @@ int main()
         while ((readSize = recv(clientSocket, clientMessage, BUFFER_LENGTH, 0)) > 0)
         {
             fflush(stdout);
-            printf("\n-----------------------------------------------");
-            printf("\nNew message received from the client\nEncrypted message is : %s", clientMessage);
+            printf("\nNew message received from the client\nEncrypted message is : %s\n\n", clientMessage);
             fflush(stdout);
 
             unsigned char decryptedMessage[BUFFER_LENGTH];
@@ -111,8 +104,8 @@ int main()
             printf("\nDecrypted message is : %s", decryptedMessage);
             fflush(stdout);
 
-            char serverMessage[BUFFER_LENGTH] = "Message received acknowledgement";
-            send(clientSocket, serverMessage, BUFFER_LENGTH, 0);
+            char server_message[BUFFER_LENGTH] = "\nMessage received acknowledgement";
+            send(clientSocket, server_message, BUFFER_LENGTH, 0);
             memset(clientMessage, 0, BUFFER_LENGTH);
         }
 
@@ -122,6 +115,6 @@ int main()
             fflush(stdout);
         }
         else if (readSize == -1)
-            perror("\nReceiving message failed");
+            perror("Receiving message failed");
     }
 }
