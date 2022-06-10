@@ -5,4 +5,4 @@ Client passes AES key to server using RSA in order to establish a secure connect
 ------------------------------------------------------------------------------------
 Requirements: libssl-dev, openssl
 
-![alt text](http://url/to/img.png](https://github.com/axnmol/AES-RSA-client-server/blob/main/Support%20process%20example%20(1).png)
+![alt text](https://github.com/axnmol/AES-RSA-client-server/blob/main/Support%20process%20example%20(1).png)
